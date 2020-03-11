@@ -12,6 +12,7 @@ So here, this code is devided into some parts:
 To run this python file user should have installed:
 * Python latest version
 * "pyttsx3" Python Text To Speech library
+* "pywin32"
 
 And here we are good to go.
 
