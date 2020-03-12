@@ -1,9 +1,17 @@
 # Importing time library for using sleep function
 import time
+import pyttsx3
+engine = pyttsx3.init()
 
-import pyttsx3    
-engine = pyttsx3.init()  
-engine.say('Hello, how may I help you.') 
+# For changing male to female voice and setting the rate or speed
+voices = engine.getProperty('voices')
+rate = engine.getProperty('rate')
+engine.setProperty('voice', voices[1].id)
+engine.setProperty('rate',125 )
+
+
+
+engine.say('Hello, how may I help you.')
   
 # run and wait method, it processes the voice commands.  
 engine.runAndWait() 
@@ -17,7 +25,7 @@ while(True):
     def up(current_f, destination_f):
 
 # For going up ...
-        if destination_f >= current_f:
+        if destination_f > current_f:
             time.sleep(1)
             print("G O I N G   U P")
             engine.say('Going Up')
@@ -27,25 +35,20 @@ while(True):
                 print(i)
                 time.sleep(1)
 
-            if destination_f == current_f:
-                print("You are on the same floor")
-                engine.say('You are on the same floor')
-                engine.runAndWait()
-            else:
-                time.sleep(1)
-                print("You have reached on {} floor".format(destination_f))
-                engine.say('You have reached on your destination')
-                engine.runAndWait()
-                time.sleep(1)
-                print("D o o r s   A r e   O p e n i n g")
-                engine.say('Doors are opening')
-                engine.runAndWait()
-                time.sleep(2)
-                lift_l = destination_f
-                print("Lift current loacation is : {}".format(lift_l))
+            time.sleep(1)
+            print("You have reached on {} floor".format(destination_f))
+            engine.say('You have reached on your destination')
+            engine.runAndWait()
+            time.sleep(1)
+            print("D o o r s   A r e   O p e n i n g")
+            engine.say('Doors are opening')
+            engine.runAndWait()
+            time.sleep(2)
+            lift_l = destination_f
+            print("Lift current loacation is : {}".format(lift_l))
 
 # For going down ...
-        elif destination_f <= current_f:
+        elif destination_f < current_f:
             time.sleep(1)
             print("G O I N G   D O W N")
             engine.say('Going Down')
@@ -56,22 +59,17 @@ while(True):
                 print(i)
                 time.sleep(1)
 
-            if destination_f == current_f:
-                print("You are on the same floor")
-                engine.say('You are on the same floor')
-                engine.runAndWait()
-            else:
-                time.sleep(1)
-                print("You have reached on {} floor".format(destination_f))
-                engine.say('You have reached on your destination')
-                engine.runAndWait()
-                time.sleep(1)
-                print("D o o r s   A r e   O p e n i n g")
-                engine.say('Doors are opening')
-                engine.runAndWait()
-                time.sleep(2)
-                lift_l = destination_f
-                print("Lift current loacation is : {}".format(lift_l))
+            time.sleep(1)
+            print("You have reached on {} floor".format(destination_f))
+            engine.say('You have reached on your destination')
+            engine.runAndWait()
+            time.sleep(1)
+            print("D o o r s   A r e   O p e n i n g")
+            engine.say('Doors are opening')
+            engine.runAndWait()
+            time.sleep(2)
+            lift_l = destination_f
+            print("Lift current loacation is : {}".format(lift_l))
 
 
 # If we are on 0th floor we can only see up button else both
@@ -88,6 +86,12 @@ while(True):
         engine.runAndWait()
 
         current_f = int(input("Enter your current floor "))
+
+        if current_f > 5:
+            print("Sorry the building have 5 floors only")
+            engine.say('Sorry, the building have only 5 floors')
+            engine.runAndWait()
+            continue
 
         if lift_l == current_f:
             print("Lift is on the same floor")
@@ -124,6 +128,12 @@ while(True):
                 print("Sorry the building have 5 floors only")
                 engine.say('Sorry, the building have only 5 floors')
                 engine.runAndWait()
+
+        elif destination_f == current_f:
+                print("You are on the same floor")
+                engine.say('You are on the same floor')
+                engine.runAndWait()
+
         else:
                 up(current_f, destination_f)
                 lift_l = destination_f
